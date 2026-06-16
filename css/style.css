@@ -274,7 +274,7 @@ body {
   height: 115%;
   top: -10%;
   object-fit: cover;
-  object-position: center 55%;
+  object-position: center 45%;
   will-change: transform;
 }
 .hero__overlay {
