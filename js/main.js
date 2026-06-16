@@ -49,21 +49,16 @@ document.querySelectorAll('.reveal').forEach(el => {
   revealObserver.observe(el);
 });
 
-/* === HERO PARALLAX === */
-const heroImg = document.querySelector('.hero__img');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* === HERO IMAGE: subtle slow zoom on load === */
+const heroImg = document.querySelector('.hero__img');
 if (heroImg && !reduceMotion) {
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const y = Math.min(window.scrollY, window.innerHeight);
-      heroImg.style.transform = `translateY(${y * 0.07}px)`;
-      ticking = false;
-    });
-  }, { passive: true });
+  heroImg.style.transform = 'scale(1.06)';
+  heroImg.style.transition = 'transform 6s var(--ease)';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    heroImg.style.transform = 'scale(1)';
+  }));
 }
 
 /* === COUNTERS === */
